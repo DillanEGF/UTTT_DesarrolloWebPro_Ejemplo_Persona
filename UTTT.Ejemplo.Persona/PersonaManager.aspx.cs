@@ -55,25 +55,24 @@ namespace UTTT.Ejemplo.Persona
                 if (!this.IsPostBack)
                 {
                     if (this.session.Parametros["baseEntity"] == null)
-                    {
-                        this.session.Parametros.Add("baseEntity", this.baseEntity);
-                    }
-                    List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
-                    CatSexo catTemp = new CatSexo();
-                    catTemp.id = -1;
-                    catTemp.strValor = "Seleccionar";
-                    lista.Insert(0, catTemp);
-                    this.ddlSexo.DataTextField = "strValor";
-                    this.ddlSexo.DataValueField = "id";
-                    this.ddlSexo.DataSource = lista;
-                    this.ddlSexo.DataBind();
+                        {
+                            this.session.Parametros.Add("baseEntity", this.baseEntity);
+                        }
+                        List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
+                        this.ddlSexo.DataTextField = "strValor";
+                        this.ddlSexo.DataValueField = "id";
+                        if (this.idPersona==0)
+                        {
+                            this.lblAccion.Text = "Agregar";
+                            CalendarExtender1.SelectedDate = DateTime.Now;
 
-                    this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
-                    this.ddlSexo.AutoPostBack = true;
-                    if (this.idPersona == 0)
-                    {
-                        this.lblAccion.Text = "Agregar";
-                    }
+                        CatSexo catTemp = new CatSexo();
+                            catTemp.id = -1;
+                            catTemp.strValor = "Seleccionar";
+                            lista.Insert(0, catTemp);
+                            this.ddlSexo.DataSource = lista;
+                            this.ddlSexo.DataBind();
+                        }
                     else
                     {
                         this.lblAccion.Text = "Editar";
@@ -81,15 +80,31 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
-                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                         this.txtCURP.Text = this.baseEntity.strCURP;
-                    }                
+                        CalendarExtender1.SelectedDate = this.baseEntity.dteFechaNacimiento.Value.Date;
+
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
+                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
+                    }
+                    this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
+                    this.ddlSexo.AutoPostBack = true;
                 }
 
             }
             catch (Exception _e)
             {
-                this.showMessage("Ha ocurrido un problema al cargar la página");
+
+                String body =
+               "<body>  " +
+               "<h1>Mensaje De Excepcion</h1>" +
+               "Hola prof. Este es mi mensaje de excepcion" +
+               "<h3>Se ha producido una excepcion en la ejecución de la aplicación</h3" +
+               "<br></br>" +
+               "<h4>Att: Dillan Esain Gomez Flores 8IDGS-G1</h4>"+
+               "</body>";
+
+                SendEmail(body);
                 this.Response.Redirect("~/PersonaPrincipal.aspx", false);
             }
 
@@ -104,6 +119,10 @@ namespace UTTT.Ejemplo.Persona
                 {
                     return;
                 }
+
+                string date = Request.Form[this.TxtFechaNacimiento.UniqueID];
+                DateTime fechadeNacimiento = Convert.ToDateTime(date);
+
                 DataContext dcGuardar = new DcGeneralDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                 if (this.idPersona == 0)
@@ -150,25 +169,33 @@ namespace UTTT.Ejemplo.Persona
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
                     persona.strCURP = this.txtCURP.Text.Trim();
                     persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                    persona.dteFechaNacimiento = fechadeNacimiento;
+
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se edito correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+
                 }
             }
             catch (Exception _e)
             {
-                //this.showMessageException(_e.Message);
+                this.showMessageException(_e.Message);
                 String body =
                 "<body>  " +
                 "<h1>Mensaje De Excepcion</h1>" +
                 "Hola prof. Este es mi mensaje de excepcion" +
                 "<h3>Se ha producido una excepcion en la ejecución de la aplicación</h3" +
                 "<br></br>" +
-                "<h4>Att: Dillan Esain Gomez Flores 8IDGS-G1</h4>" +
+                "<h4>Att: Dillan Esain Gomez Flores 8IDGS-G1</h4>" +_e.Message+
                 "</body>";
 
                 SendEmail(body);
-            
+
+                string msg = "Se ha generado una Excepcion, se enviará un correo electronico al admin";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + msg + "');", true);
+
+                //this.Response.Redirect("~/PersonaPrincipal.aspx", false);
+
             }
         }
 

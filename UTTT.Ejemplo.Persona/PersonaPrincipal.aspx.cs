@@ -11,6 +11,8 @@ using System.Linq.Expressions;
 using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
+using System.Net.Mail;
+using System.Net;
 
 #endregion
 
@@ -47,8 +49,51 @@ namespace UTTT.Ejemplo.Persona
             }
             catch (Exception _e)
             {
-                this.showMessage("Ha ocurrido un problema al cargar la página");               
+                this.showMessage("Ha ocurrido un problema al cargar la página");
+                String body =
+               "<body>  " +
+               "<h1>Mensaje De Excepcion</h1>" +
+               "Hola prof. Este es mi mensaje de excepcion" +
+               "<h3>Se ha producido una excepcion en la ejecución de la aplicación</h3" +
+               "<br></br>" +
+               "<h4>Att: Dillan Esain Gomez Flores 8IDGS-G1</h4>" +
+               "</body>";
+
+                SendEmail(body);
+                this.Response.Redirect("~/PersonaPrincipal.aspx", false);
             }
+        }
+
+        public static void SendEmail(string Body)
+        {
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+
+            mail.From = new MailAddress("eisan34@gmail.com");
+
+            mail.To.Add("esaindg@gmail.com");
+            mail.Subject = "Error en el programa";
+            mail.IsBodyHtml = true;
+            mail.Body = Body;
+
+            SmtpClient smtp = new SmtpClient();
+
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587; //465;  //25; 
+            smtp.Credentials = new NetworkCredential("eisan34@gmail.com", "DillanShippuden");
+            smtp.EnableSsl = true;
+            try
+            {
+                smtp.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se ha podido enviar el email", ex.InnerException);
+            }
+            finally
+            {
+                smtp.Dispose();
+            }
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -196,6 +241,23 @@ namespace UTTT.Ejemplo.Persona
             {
                 throw _e;
             }
+        }
+
+        protected void onTxtNombreTextChange(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DataSourcePersona.RaiseViewChanged();
+            }
+            catch (Exception _e)
+            {
+                this.showMessage("Ha ocurrido un problema al buscar");
+            }
+        }
+
+        protected void buscarTextBox(object sender, EventArgs e)
+        {
+            this.DataSourcePersona.RaiseViewChanged();
         }
 
         #endregion

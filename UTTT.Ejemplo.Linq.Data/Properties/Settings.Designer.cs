@@ -16,7 +16,6 @@ namespace UTTT.Ejemplo.Linq.Data.Properties {
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
         public static Settings Default {
             get {
                 return defaultInstance;
@@ -26,7 +25,7 @@ namespace UTTT.Ejemplo.Linq.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("workstation id=Persona.mssql.somee.com;packet size=4096;user id=DillanGom_SQLLogin_1;pwd=2fxa5qoqd3;data source=Persona.mssql.somee.com;persist security info=False;initial catalog=Persona")]
+        [global::System.Configuration.DefaultSettingValueAttribute("workstation id=Persona1.mssql.somee.com;packet size=4096;user id=DillanDi_SQLLogin_1;pwd=a3cfjygelx;data source=Persona1.mssql.somee.com;persist security info=False;initial catalog=Persona1")]
         public string PersonaConnectionString {
             get {
                 return ((string)(this["PersonaConnectionString"]));
@@ -36,7 +35,7 @@ namespace UTTT.Ejemplo.Linq.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("workstation id=Persona.mssql.somee.com;packet size=4096;user id=DillanGom_SQLLogin_1;pwd=2fxa5qoqd3;data source=Persona.mssql.somee.com;persist security info=False;initial catalog=Persona")]
+        [global::System.Configuration.DefaultSettingValueAttribute("workstation id=Persona1.mssql.somee.com;packet size=4096;user id=DillanDi_SQLLogin_1;pwd=a3cfjygelx;data source=Persona1.mssql.somee.com;persist security info=False;initial catalog=Persona1")]
         public string PersonaConnectionString1 {
             get {
                 return ((string)(this["PersonaConnectionString1"]));

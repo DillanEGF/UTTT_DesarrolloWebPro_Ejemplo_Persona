@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,8 +101,12 @@
     <Content Include="DireccionExtraManager.aspx" />
     <Content Include="DireccionManager.aspx" />
     <Content Include="Error.html" />
+    <Content Include="Images\calendario_16x16.png" />
+    <Content Include="Images\editar_16x16.png" />
+    <Content Include="Images\eliminar_16x16.png" />
     <Content Include="Images\delrecord_16x16.png" />
     <Content Include="Images\editrecord_16x16.png" />
+    <Content Include="Images\info_16x16.png" />
     <Content Include="Images\Pixir-1-1-300x181.png" />
     <Content Include="Images\printrecord_16x16.png" />
     <Content Include="javaScripFile.js" />
