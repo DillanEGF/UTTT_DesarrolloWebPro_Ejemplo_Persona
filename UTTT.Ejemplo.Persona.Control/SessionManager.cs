@@ -9,6 +9,7 @@ namespace UTTT.Ejemplo.Persona.Control
     public class SessionManager
     {
         private int idPersona;
+        private int idUsuario;
         private bool accionAgregar = false;
         private bool accionEditar = false;
         private int idManager = 0;
@@ -45,6 +46,22 @@ namespace UTTT.Ejemplo.Persona.Control
             get { return strNombrePersona; }
             set { strNombrePersona = value; }
         }
+
+        public int IdUsuario
+        {
+            get { return idUsuario; }
+            set { idUsuario = value; }
+        }
+
+        private String strNombreUsuario;
+
+        public String StrNombreUsuario
+        {
+            get { return strNombreUsuario; }
+            set { strNombreUsuario = value; }
+        }
+
+
         private String pantalla;
 
         public String Pantalla

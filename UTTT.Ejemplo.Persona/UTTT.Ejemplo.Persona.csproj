@@ -27,6 +27,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode>true</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerLaunchUrl>http://{ServiceIPAddress}</DockerLaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,16 +71,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\UTTT.Ejemplo.Linq.Data\bin\Debug\UTTT.Ejemplo.Linq.Data.dll</HintPath>
     </Reference>
-    <Reference Include="UTTT.Ejemplo.Persona.Control, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\UTTT.Ejemplo.Persona.Control\bin\Debug\UTTT.Ejemplo.Persona.Control.dll</HintPath>
-    </Reference>
     <Reference Include="UTTT.Ejemplo.Persona.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\UTTT.Ejemplo.Persona.Data\bin\Debug\UTTT.Ejemplo.Persona.Data.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CambiarPass.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -96,23 +95,25 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="controlformato.css" />
-    <Content Include="Default.aspx" />
-    <Content Include="direccion.aspx" />
-    <Content Include="DireccionExtraManager.aspx" />
-    <Content Include="DireccionManager.aspx" />
+    <Content Include="DireccionPrincipal.aspx" />
+    <Content Include="DireccionEmpresa.aspx" />
+    <Content Include="EmpEmpleadoPrincipal.aspx" />
+    <Content Include="EmpleadoManager.aspx" />
+    <Content Include="EmpleadoPrincipal.aspx" />
+    <Content Include="EmpresaPrincipal.aspx" />
     <Content Include="Error.html" />
     <Content Include="Images\calendario_16x16.png" />
     <Content Include="Images\editar_16x16.png" />
     <Content Include="Images\eliminar_16x16.png" />
     <Content Include="Images\delrecord_16x16.png" />
     <Content Include="Images\editrecord_16x16.png" />
+    <Content Include="Images\img.jpg" />
     <Content Include="Images\info_16x16.png" />
     <Content Include="Images\Pixir-1-1-300x181.png" />
     <Content Include="Images\printrecord_16x16.png" />
-    <Content Include="javaScripFile.js" />
-    <Content Include="javaScripPage.aspx" />
-    <Content Include="PersonaManager.aspx" />
-    <Content Include="PersonaPrincipal.aspx" />
+    <Content Include="Inicio.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="BuscarUsuario.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -122,6 +123,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="UsuarioManager.aspx" />
+    <Content Include="UsuarioPrincipal.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -133,70 +136,95 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Default.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="direccion.aspx.cs">
-      <DependentUpon>direccion.aspx</DependentUpon>
+    <Compile Include="CambiarPass.aspx.cs">
+      <DependentUpon>CambiarPass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="direccion.aspx.designer.cs">
-      <DependentUpon>direccion.aspx</DependentUpon>
+    <Compile Include="CambiarPass.aspx.designer.cs">
+      <DependentUpon>CambiarPass.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DireccionExtraManager.aspx.cs">
-      <DependentUpon>DireccionExtraManager.aspx</DependentUpon>
+    <Compile Include="DireccionPrincipal.aspx.cs">
+      <DependentUpon>DireccionPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DireccionExtraManager.aspx.designer.cs">
-      <DependentUpon>DireccionExtraManager.aspx</DependentUpon>
+    <Compile Include="DireccionPrincipal.aspx.designer.cs">
+      <DependentUpon>DireccionPrincipal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DireccionManager.aspx.cs">
-      <DependentUpon>DireccionManager.aspx</DependentUpon>
+    <Compile Include="DireccionEmpresa.aspx.cs">
+      <DependentUpon>DireccionEmpresa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DireccionManager.aspx.designer.cs">
-      <DependentUpon>DireccionManager.aspx</DependentUpon>
+    <Compile Include="DireccionEmpresa.aspx.designer.cs">
+      <DependentUpon>DireccionEmpresa.aspx</DependentUpon>
     </Compile>
-    <Compile Include="javaScripPage.aspx.cs">
-      <DependentUpon>javaScripPage.aspx</DependentUpon>
+    <Compile Include="EmpEmpleadoPrincipal.aspx.cs">
+      <DependentUpon>EmpEmpleadoPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="javaScripPage.aspx.designer.cs">
-      <DependentUpon>javaScripPage.aspx</DependentUpon>
+    <Compile Include="EmpEmpleadoPrincipal.aspx.designer.cs">
+      <DependentUpon>EmpEmpleadoPrincipal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="paginaMaster.Master.cs">
-      <DependentUpon>paginaMaster.Master</DependentUpon>
+    <Compile Include="EmpleadoManager.aspx.cs">
+      <DependentUpon>EmpleadoManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="paginaMaster.Master.designer.cs">
-      <DependentUpon>paginaMaster.Master</DependentUpon>
+    <Compile Include="EmpleadoManager.aspx.designer.cs">
+      <DependentUpon>EmpleadoManager.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PersonaManager.aspx.cs">
-      <DependentUpon>PersonaManager.aspx</DependentUpon>
+    <Compile Include="EmpleadoPrincipal.aspx.cs">
+      <DependentUpon>EmpleadoPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PersonaManager.aspx.designer.cs">
-      <DependentUpon>PersonaManager.aspx</DependentUpon>
+    <Compile Include="EmpleadoPrincipal.aspx.designer.cs">
+      <DependentUpon>EmpleadoPrincipal.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PersonaPrincipal.aspx.cs">
-      <DependentUpon>PersonaPrincipal.aspx</DependentUpon>
+    <Compile Include="EmpresaPrincipal.aspx.cs">
+      <DependentUpon>EmpresaPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PersonaPrincipal.aspx.designer.cs">
-      <DependentUpon>PersonaPrincipal.aspx</DependentUpon>
+    <Compile Include="EmpresaPrincipal.aspx.designer.cs">
+      <DependentUpon>EmpresaPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BuscarUsuario.aspx.cs">
+      <DependentUpon>BuscarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuscarUsuario.aspx.designer.cs">
+      <DependentUpon>BuscarUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioManager.aspx.cs">
+      <DependentUpon>UsuarioManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioManager.aspx.designer.cs">
+      <DependentUpon>UsuarioManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioPrincipal.aspx.cs">
+      <DependentUpon>UsuarioPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioPrincipal.aspx.designer.cs">
+      <DependentUpon>UsuarioPrincipal.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="css\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="paginaMaster.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -266,6 +294,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UTTT.Ejemplo.Persona.Control\UTTT.Ejemplo.Persona.Control.csproj">
+      <Project>{c354bdcd-2821-467a-9104-a08a803b414f}</Project>
+      <Name>UTTT.Ejemplo.Persona.Control</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
